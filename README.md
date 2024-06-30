@@ -1,1 +1,3 @@
-# dys-org/core
+# mono
+
+my majestic monorepo
