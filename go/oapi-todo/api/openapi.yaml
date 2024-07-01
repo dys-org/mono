@@ -26,6 +26,10 @@ paths:
       responses:
         "201":
           description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todo'
   /todos/{id}:
     get:
       summary: Get a todo by ID
@@ -59,6 +63,10 @@ paths:
       responses:
         "200":
           description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Todo"
     delete:
       summary: Delete a todo by ID
       parameters:

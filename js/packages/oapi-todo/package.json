@@ -11,14 +11,16 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "generate-client": "orval generate --config ./orval.config.ts",
     "format": "prettier --write src/"
   },
   "dependencies": {
     "@tanstack/vue-query": "^5.45.0",
+    "axios": "^1.7.2",
+    "dys-ui": "workspace:^",
     "pinia": "^2.1.7",
     "vue": "^3.4.29",
-    "vue-router": "^4.3.3",
-    "dys-ui": "workspace:^"
+    "vue-router": "^4.3.3"
   },
   "devDependencies": {
     "@egoist/tailwindcss-icons": "^1.8.1",
@@ -34,9 +36,12 @@
     "eslint-plugin-playwright": "^1.6.2",
     "eslint-plugin-vue": "^9.23.0",
     "npm-run-all2": "^6.2.0",
+    "orval": "^6.31.0",
     "postcss": "^8.4.38",
     "prettier-plugin-tailwindcss": "^0.6.5",
+    "tailwind-merge": "^2.3.0",
     "tailwindcss": "^3.4.4",
+    "tailwindcss-animate": "^1.0.7",
     "vite": "^5.3.1",
     "vue-tsc": "^2.0.21"
   }

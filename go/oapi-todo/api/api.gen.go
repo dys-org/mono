@@ -177,12 +177,13 @@ type PostTodosResponseObject interface {
 	VisitPostTodosResponse(w http.ResponseWriter) error
 }
 
-type PostTodos201Response struct {
-}
+type PostTodos201JSONResponse Todo
 
-func (response PostTodos201Response) VisitPostTodosResponse(w http.ResponseWriter) error {
+func (response PostTodos201JSONResponse) VisitPostTodosResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(201)
-	return nil
+
+	return json.NewEncoder(w).Encode(response)
 }
 
 type DeleteTodosIdRequestObject struct {
@@ -227,12 +228,13 @@ type PutTodosIdResponseObject interface {
 	VisitPutTodosIdResponse(w http.ResponseWriter) error
 }
 
-type PutTodosId200Response struct {
-}
+type PutTodosId200JSONResponse Todo
 
-func (response PutTodosId200Response) VisitPutTodosIdResponse(w http.ResponseWriter) error {
+func (response PutTodosId200JSONResponse) VisitPutTodosIdResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
-	return nil
+
+	return json.NewEncoder(w).Encode(response)
 }
 
 // StrictServerInterface represents all server handlers.
