@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type HTMLAttributes, computed, ref, watch } from 'vue';
+import { type HTMLAttributes, computed, ref } from 'vue';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -18,12 +18,12 @@ const props = withDefaults(
     placeholder?: string;
     triggerText?: string;
     options: { value: string; label: string }[];
+    /** tailwindcss width class */
     width?: HTMLAttributes['class'];
   }>(),
   {
-    multiple: false,
     placeholder: 'Search...',
-    triggerText: 'Select ...',
+    triggerText: 'Select...',
     width: 'w-80',
   },
 );
@@ -32,15 +32,6 @@ const model = defineModel<string | string[]>({ default: '' });
 
 const open = ref(false);
 const search = ref('');
-
-watch(search, (newValue, oldValue) => {
-  console.log(newValue);
-  if (!newValue) console.log('FUCKK');
-});
-
-watch(open, (newValue, oldValue) => {
-  if (!newValue) search.value = '';
-});
 
 const isMultiple = computed(() => Array.isArray(model.value));
 </script>
@@ -79,18 +70,17 @@ const isMultiple = computed(() => Array.isArray(model.value));
               :key="opt.value"
               :value="opt.value"
               @select="
-                (ev) => {
+                (e) => {
                   // this is used instead of v-model on Command
-                  // to keep the search value from changing on select of a single item
-                  if (isMultiple) {
+                  // to keep the search value from changing on select
+                  if (Array.isArray(model)) {
+                    // same check as isMultiple
                     model = model.includes(opt.value)
-                      ? // @ts-expect-error
-                        model.filter((v) => v !== opt.value)
+                      ? model.filter((v) => v !== opt.value)
                       : [...model, opt.value];
-                    // }
                   } else {
-                    if (typeof ev.detail.value === 'string') {
-                      model = ev.detail.value;
+                    if (typeof e.detail.value === 'string') {
+                      model = e.detail.value;
                     }
                     open = false;
                   }
