@@ -15,18 +15,18 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@tanstack/vue-query": "^5.45.0",
+    "@tanstack/vue-query": "^5.50.1",
     "axios": "^1.7.2",
     "dys-ui": "workspace:^",
     "pinia": "^2.1.7",
-    "vue": "^3.4.29",
-    "vue-router": "^4.3.3"
+    "vue": "^3.4.31",
+    "vue-router": "^4.4.0"
   },
   "devDependencies": {
     "@egoist/tailwindcss-icons": "^1.8.1",
-    "@iconify-json/lucide": "^1.1.193",
-    "@playwright/test": "^1.44.1",
-    "@rushstack/eslint-patch": "^1.8.0",
+    "@iconify-json/lucide": "^1.1.198",
+    "@playwright/test": "^1.45.1",
+    "@rushstack/eslint-patch": "^1.10.3",
     "@tsconfig/node20": "^20.1.4",
     "@vitejs/plugin-vue": "^5.0.5",
     "@vue/eslint-config-prettier": "^9.0.0",
@@ -34,15 +34,15 @@
     "@vue/tsconfig": "^0.5.1",
     "autoprefixer": "^10.4.19",
     "eslint-plugin-playwright": "^1.6.2",
-    "eslint-plugin-vue": "^9.23.0",
-    "npm-run-all2": "^6.2.0",
+    "eslint-plugin-vue": "^9.27.0",
+    "npm-run-all2": "^6.2.2",
     "orval": "^6.31.0",
-    "postcss": "^8.4.38",
+    "postcss": "^8.4.39",
     "prettier-plugin-tailwindcss": "^0.6.5",
     "tailwind-merge": "^2.3.0",
     "tailwindcss": "^3.4.4",
     "tailwindcss-animate": "^1.0.7",
-    "vite": "^5.3.1",
-    "vue-tsc": "^2.0.21"
+    "vite": "^5.3.3",
+    "vue-tsc": "^2.0.26"
   }
 }
