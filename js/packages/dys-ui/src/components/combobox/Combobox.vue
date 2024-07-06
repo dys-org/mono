@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { type HTMLAttributes, computed, ref, watch } from 'vue';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -13,16 +13,36 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
 
-const frameworks = [
-  { value: 'next.js', label: 'Next.js' },
-  { value: 'sveltekit', label: 'SvelteKit' },
-  { value: 'nuxt', label: 'Nuxt' },
-  { value: 'remix', label: 'Remix' },
-  { value: 'astro', label: 'Astro' },
-];
+const props = withDefaults(
+  defineProps<{
+    placeholder?: string;
+    triggerText?: string;
+    options: { value: string; label: string }[];
+    width?: HTMLAttributes['class'];
+  }>(),
+  {
+    multiple: false,
+    placeholder: 'Search...',
+    triggerText: 'Select ...',
+    width: 'w-80',
+  },
+);
+
+const model = defineModel<string | string[]>({ default: '' });
 
 const open = ref(false);
-const value = ref('');
+const search = ref('');
+
+watch(search, (newValue, oldValue) => {
+  console.log(newValue);
+  if (!newValue) console.log('FUCKK');
+});
+
+watch(open, (newValue, oldValue) => {
+  if (!newValue) search.value = '';
+});
+
+const isMultiple = computed(() => Array.isArray(model.value));
 </script>
 
 <template>
@@ -32,44 +52,63 @@ const value = ref('');
         variant="outline"
         role="combobox"
         :aria-expanded="open"
-        class="w-[200px] justify-between"
+        :class="['justify-between', props.width]"
       >
         {{
-          value
-            ? frameworks.find((framework) => framework.value === value)?.label
-            : 'Select framework...'
+          isMultiple && model.length
+            ? props.options
+                .filter((opt) => model.includes(opt.value))
+                .map((opt) => opt.label)
+                .join(', ')
+            : typeof model === 'string' && model
+              ? props.options.find((opt) => opt.value === model)?.label
+              : props.triggerText
         }}
+
         <span class="i-lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50" />
       </Button>
     </PopoverTrigger>
-    <PopoverContent class="w-[200px] p-0">
-      <Command>
-        <CommandInput class="h-9" placeholder="Search framework..." />
+    <PopoverContent :class="['p-0', props.width]">
+      <Command :multiple="isMultiple">
+        <CommandInput v-model="search" :placeholder="props.placeholder" />
         <CommandEmpty>No framework found.</CommandEmpty>
         <CommandList>
           <CommandGroup>
             <CommandItem
-              v-for="framework in frameworks"
-              :key="framework.value"
-              :value="framework.value"
+              v-for="opt in props.options"
+              :key="opt.value"
+              :value="opt.value"
               @select="
                 (ev) => {
-                  if (typeof ev.detail.value === 'string') {
-                    value = ev.detail.value;
+                  // this is used instead of v-model on Command
+                  // to keep the search value from changing on select of a single item
+                  if (isMultiple) {
+                    model = model.includes(opt.value)
+                      ? // @ts-expect-error
+                        model.filter((v) => v !== opt.value)
+                      : [...model, opt.value];
+                    // }
+                  } else {
+                    if (typeof ev.detail.value === 'string') {
+                      model = ev.detail.value;
+                    }
+                    open = false;
                   }
-                  open = false;
                 }
               "
             >
-              {{ framework.label }}
               <span
                 :class="
                   cn(
-                    'i-lucide-check ml-auto size-4',
-                    value === framework.value ? 'opacity-100' : 'opacity-0',
+                    'i-lucide-check mr-2 size-4',
+                    // prettier-ignore
+                    isMultiple && model.includes(opt.value) ? 'opacity-100' :
+                    model === opt.value ? 'opacity-100' :
+                    'opacity-0',
                   )
                 "
               />
+              {{ opt.label }}
             </CommandItem>
           </CommandGroup>
         </CommandList>

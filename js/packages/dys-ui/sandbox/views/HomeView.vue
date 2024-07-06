@@ -1,16 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
+import Combobox from '@/components/combobox/Combobox.vue';
 import { DarkModeToggle } from '@/components/dark-mode-toggle';
 import { Button } from '@/components/ui/button';
 // prettier-ignore
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
-// prettier-ignore
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 // prettier-ignore
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { cn } from '@/lib/utils';
 
 const frameworkOptions = [
   { value: 'next.js', label: 'Next.js' },
@@ -20,15 +17,12 @@ const frameworkOptions = [
   { value: 'astro', label: 'Astro' },
 ];
 
-const open1 = ref(false);
-const framework = ref('');
-
-const open2 = ref(false);
-const selectedFrameworks = ref(['next.js', 'sveltekit']);
+const selected = ref('');
+const selectedMultiple = ref([]);
 </script>
 
 <template>
-  <main class="container p-6">
+  <main class="container mb-96 p-6">
     <h1 class="mb-8 text-base font-semibold uppercase">Showcase</h1>
     <div class="grid gap-12">
       <!-- DARK MODE TOGGLE -->
@@ -192,103 +186,12 @@ const selectedFrameworks = ref(['next.js', 'sveltekit']);
       <!-- COMBOBOX -->
       <div class="max-w-96">
         <h2 class="mb-4 text-2xl font-semibold">Combobox</h2>
-        <Popover v-model:open="open1">
-          <PopoverTrigger as-child>
-            <Button
-              variant="outline"
-              role="combobox"
-              :aria-expanded="open1"
-              class="w-[200px] justify-between"
-            >
-              {{
-                framework
-                  ? frameworkOptions.find((fw) => fw.value === framework)?.label
-                  : 'Select framework...'
-              }}
-
-              <span class="i-lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50" />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent class="w-[200px] p-0">
-            <Command v-model="framework">
-              <CommandInput placeholder="Search framework..." />
-              <CommandEmpty>No framework found.</CommandEmpty>
-              <CommandList>
-                <CommandGroup>
-                  <CommandItem
-                    v-for="fw in frameworkOptions"
-                    :key="fw.value"
-                    :value="fw.value"
-                    @select="
-                      (ev) => {
-                        if (typeof ev.detail.value === 'string') {
-                          framework = ev.detail.value;
-                        }
-                        open1 = false;
-                      }
-                    "
-                  >
-                    <span
-                      :class="
-                        cn(
-                          'i-lucide-check mr-2 size-4',
-                          framework === fw.value ? 'opacity-100' : 'opacity-0',
-                        )
-                      "
-                    />
-                    {{ fw.label }}
-                  </CommandItem>
-                </CommandGroup>
-              </CommandList>
-            </Command>
-          </PopoverContent>
-        </Popover>
+        <Combobox v-model="selected" :options="frameworkOptions" width="w-96" />
       </div>
 
       <div class="max-w-96">
         <h2 class="mb-4 text-2xl font-semibold">Combobox Multiple</h2>
-        <Popover v-model:open="open2">
-          <PopoverTrigger as-child>
-            <Button
-              variant="outline"
-              role="combobox"
-              :aria-expanded="open2"
-              class="w-full justify-between"
-            >
-              {{
-                selectedFrameworks.length
-                  ? frameworkOptions
-                      .filter((fw) => selectedFrameworks.includes(fw.value))
-                      .map((fw) => fw.label)
-                      .join(', ')
-                  : 'Select framework...'
-              }}
-
-              <span class="i-lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50" />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent class="w-[200px] p-0">
-            <Command v-model="selectedFrameworks" multiple>
-              <CommandInput placeholder="Search framework..." />
-              <CommandEmpty>No framework found.</CommandEmpty>
-              <CommandList>
-                <CommandGroup>
-                  <CommandItem v-for="fw in frameworkOptions" :key="fw.value" :value="fw.value">
-                    <span
-                      :class="
-                        cn(
-                          'i-lucide-check mr-2 size-4',
-                          selectedFrameworks.includes(fw.value) ? 'opacity-100' : 'opacity-0',
-                        )
-                      "
-                    />
-                    {{ fw.label }}
-                  </CommandItem>
-                </CommandGroup>
-              </CommandList>
-            </Command>
-          </PopoverContent>
-        </Popover>
+        <Combobox v-model="selectedMultiple" :options="frameworkOptions" />
       </div>
     </div>
   </main>
