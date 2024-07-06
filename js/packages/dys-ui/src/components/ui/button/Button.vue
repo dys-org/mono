@@ -1,22 +1,26 @@
 <script setup lang="ts">
+import type { HTMLAttributes } from 'vue';
+
 import { cn } from '@/lib/utils';
 
 interface Props {
+  as?: string;
   variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link';
   size?: 'default' | 'sm' | 'lg' | 'icon' | null;
-  as?: string;
+  class?: HTMLAttributes['class'];
 }
 
 const props = withDefaults(defineProps<Props>(), {
   as: 'button',
   variant: 'default',
   size: 'default',
+  class: '',
 });
 </script>
 
 <template>
   <component
-    :is="as"
+    :is="props.as"
     :class="
       cn(
         'inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
@@ -38,7 +42,7 @@ const props = withDefaults(defineProps<Props>(), {
         'lg' === props.size && 'h-11 rounded-md px-8',
         'icon' === props.size && 'h-10 w-10',
 
-        $attrs.class ?? '',
+        props.class,
       )
     "
   >
