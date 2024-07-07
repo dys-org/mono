@@ -2,6 +2,7 @@
 import { CalendarNext, type CalendarNextProps, useForwardProps } from 'radix-vue';
 import { type HTMLAttributes, computed } from 'vue';
 
+import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 const props = defineProps<CalendarNextProps & { class?: HTMLAttributes['class'] }>();
@@ -19,7 +20,7 @@ const forwardedProps = useForwardProps(delegatedProps);
   <CalendarNext
     :class="
       cn(
-        'border border-input hover:bg-accent hover:text-accent-foreground', // variant outline
+        buttonVariants({ variant: 'outline' }),
         'size-7 bg-transparent p-0 opacity-50 hover:opacity-100',
         props.class,
       )

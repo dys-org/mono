@@ -3,6 +3,8 @@ import { ref } from 'vue';
 
 import Combobox from '@/components/combobox/Combobox.vue';
 import { DarkModeToggle } from '@/components/dark-mode-toggle';
+// prettier-ignore
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 // prettier-ignore
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
@@ -192,6 +194,29 @@ const selectedMultiple = ref([]);
       <div class="max-w-96">
         <h2 class="mb-4 text-2xl font-semibold">Combobox Multiple</h2>
         <Combobox v-model="selectedMultiple" :options="frameworkOptions" />
+      </div>
+      <!-- CONFIRM DIALOG -->
+      <div class="max-w-96">
+        <h2 class="mb-4 text-2xl font-semibold">Alert Dialog</h2>
+
+        <AlertDialog>
+          <AlertDialogTrigger as-child>
+            <Button variant="outline"> Show Dialog </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This action cannot be undone. This will permanently delete your account and remove
+                your data from our servers.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction>Continue</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
     </div>
   </main>

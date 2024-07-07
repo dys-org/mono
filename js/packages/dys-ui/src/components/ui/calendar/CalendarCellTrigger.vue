@@ -2,6 +2,7 @@
 import { CalendarCellTrigger, type CalendarCellTriggerProps, useForwardProps } from 'radix-vue';
 import { type HTMLAttributes, computed } from 'vue';
 
+import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 const props = defineProps<CalendarCellTriggerProps & { class?: HTMLAttributes['class'] }>();
@@ -19,7 +20,7 @@ const forwardedProps = useForwardProps(delegatedProps);
   <CalendarCellTrigger
     :class="
       cn(
-        'hover:bg-accent hover:text-accent-foreground', // variant ghost
+        buttonVariants({ variant: 'ghost' }),
         'size-9 p-0 font-normal',
         '[&[data-today]:not([data-selected])]:bg-accent [&[data-today]:not([data-selected])]:text-accent-foreground',
         // Selected
