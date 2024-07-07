@@ -30,6 +30,6 @@ const forwardedProps = useForwardProps(delegatedProps);
     "
   >
     <slot />
-    <span class="i-lucide-chevron-right ml-auto h-4 w-4" />
+    <span class="i-lucide-chevron-right ml-auto size-4" />
   </DropdownMenuSubTrigger>
 </template>
