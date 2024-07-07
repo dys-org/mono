@@ -17,9 +17,6 @@ importers:
       '@types/node':
         specifier: ^20.14.5
         version: 20.14.9
-      eslint:
-        specifier: ^8.57.0
-        version: 8.57.0
       prettier:
         specifier: ^3.3.0
         version: 3.3.2
@@ -75,6 +72,9 @@ importers:
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.39)
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
       eslint-plugin-vue:
         specifier: ^9.23.0
         version: 9.26.0(eslint@8.57.0)
@@ -154,6 +154,9 @@ importers:
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.39)
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
       eslint-plugin-playwright:
         specifier: ^1.6.2
         version: 1.6.2(eslint@8.57.0)
