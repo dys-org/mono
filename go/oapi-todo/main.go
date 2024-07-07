@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"github.com/go-sql-driver/mysql"
+	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 
@@ -48,6 +49,11 @@ func initDB() {
 }
 
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	initDB()
 
 	// Pass the db instance to the api package
