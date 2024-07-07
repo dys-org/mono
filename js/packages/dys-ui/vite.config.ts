@@ -3,6 +3,7 @@ import { URL, fileURLToPath } from 'node:url';
 import vue from '@vitejs/plugin-vue';
 import autoprefixer from 'autoprefixer';
 import tailwind from 'tailwindcss';
+// import twNesting from 'tailwindcss/nesting';
 import { defineConfig } from 'vite';
 
 import { peerDependencies } from './package.json';
@@ -10,7 +11,11 @@ import { peerDependencies } from './package.json';
 export default defineConfig({
   css: {
     postcss: {
-      plugins: [tailwind(), autoprefixer()],
+      plugins: [
+        // twNesting(),
+        tailwind(),
+        autoprefixer(),
+      ],
     },
   },
   plugins: [vue()],
