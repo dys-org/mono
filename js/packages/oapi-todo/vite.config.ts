@@ -15,10 +15,10 @@ export default defineConfig({
     // enable devtools in prod https://github.com/vuejs/core/tree/main/packages/vue#bundler-build-feature-flags
     __VUE_PROD_DEVTOOLS__: true,
   },
-  // server: {
-  //   proxy: {
-  //     '/api': 'http://localhost:6969',
-  //     '/auth': 'http://localhost:6969',
-  //   },
-  // },
+  server: {
+    proxy: {
+      '/api': 'http://localhost:6969',
+      // '/auth': 'http://localhost:6969',
+    },
+  },
 });

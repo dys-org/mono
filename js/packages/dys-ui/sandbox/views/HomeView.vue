@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { toTypedSchema } from '@vee-validate/zod';
+import { useForm } from 'vee-validate';
 import { ref } from 'vue';
+import * as z from 'zod';
 
 import { Combobox } from '@/components/combobox';
 import { DarkModeToggle } from '@/components/dark-mode-toggle';
@@ -8,6 +11,9 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { Button } from '@/components/ui/button';
 // prettier-ignore
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+// prettier-ignore
+import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 // prettier-ignore
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
 
@@ -21,10 +27,24 @@ const frameworkOptions = [
 
 const selected = ref('');
 const selectedMultiple = ref([]);
+
+const formSchema = toTypedSchema(
+  z.object({
+    username: z.string().min(2).max(50),
+  }),
+);
+
+const { handleSubmit } = useForm({
+  validationSchema: formSchema,
+});
+
+const onSubmit = handleSubmit((values) => {
+  alert(JSON.stringify(values));
+});
 </script>
 
 <template>
-  <main class="container mb-96 p-6">
+  <main class="mb-96">
     <h1 class="mb-8 text-base font-semibold uppercase">Showcase</h1>
     <div class="grid gap-12">
       <!-- DARK MODE TOGGLE -->
@@ -217,6 +237,23 @@ const selectedMultiple = ref([]);
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
+      </div>
+
+      <div class="max-w-96">
+        <h2 class="mb-4 text-2xl font-semibold">Form</h2>
+        <form class="w-2/3 space-y-6" @submit="onSubmit">
+          <FormField v-slot="{ componentField }" name="username">
+            <FormItem>
+              <FormLabel>Username</FormLabel>
+              <FormControl>
+                <Input type="text" placeholder="dys" v-bind="componentField" />
+              </FormControl>
+              <FormDescription> This is your public display name. </FormDescription>
+              <FormMessage />
+            </FormItem>
+          </FormField>
+          <Button type="submit"> Submit </Button>
+        </form>
       </div>
     </div>
   </main>

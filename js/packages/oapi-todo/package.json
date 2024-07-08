@@ -16,11 +16,14 @@
   },
   "dependencies": {
     "@tanstack/vue-query": "^5.50.1",
+    "@vee-validate/zod": "^4.13.2",
     "axios": "^1.7.2",
     "dys-ui": "workspace:^",
     "pinia": "^2.1.7",
+    "vee-validate": "^4.13.2",
     "vue": "^3.4.31",
-    "vue-router": "^4.4.0"
+    "vue-router": "^4.4.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@egoist/tailwindcss-icons": "^1.8.1",

@@ -36,4 +36,7 @@ export default defineConfig({
       external: [...Object.keys(peerDependencies)],
     },
   },
+  server: {
+    port: 8788,
+  },
 });
