@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-import Combobox from '@/components/combobox/Combobox.vue';
+import { Combobox } from '@/components/combobox';
 import { DarkModeToggle } from '@/components/dark-mode-toggle';
 // prettier-ignore
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
