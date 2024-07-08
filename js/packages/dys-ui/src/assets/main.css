@@ -33,11 +33,8 @@
     --accent-foreground: 222.2 47.4% 11.2%;
 
     /* Used for destructive actions such as <Button variant="destructive"> */
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    /* --warning: 38 92% 50%;
-    --warning-foreground: 48 96% 89%; */
+    --destructive: 0 72.2% 50.6%;
+    --destructive-foreground: 0 85.7% 99%;
 
     /* Default border color */
     --border: 214.3 31.8% 91.4%;
@@ -46,7 +43,7 @@
     /* Used for focus ring */
     --ring: 221.2 83.2% 53.3%;
     /* Border radius for card, input and buttons */
-    --radius: 0.5rem;
+    --radius: 0.25rem;
   }
 
   .dark {
@@ -63,7 +60,7 @@
     --popover-foreground: 210 40% 98%;
 
     --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary-foreground: 222.2 47.4% 4.9%;
 
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -71,11 +68,8 @@
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    /* --warning: 48 96% 89%;
-    --warning-foreground: 38 92% 50%; */
+    /* --destructive: 0 72.2% 50.6%;
+    --destructive-foreground: 0 85.7% 99%; */
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;

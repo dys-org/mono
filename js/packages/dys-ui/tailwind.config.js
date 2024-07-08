@@ -52,10 +52,6 @@ export default {
           DEFAULT: 'hsl(var(--destructive))',
           foreground: 'hsl(var(--destructive-foreground))',
         },
-        // warning: {
-        //   DEFAULT: 'hsl(var(--warning))',
-        //   foreground: 'hsl(var(--warning-foreground))',
-        // },
       },
       borderRadius: {
         xl: 'calc(var(--radius) + 4px)',
