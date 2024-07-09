@@ -31,7 +31,7 @@ const onSubmit = handleSubmit((values) => {
           <FormMessage />
         </FormItem>
       </FormField>
-      <Button type="submit"> Add </Button>
+      <Button type="submit" variant="default"> Add </Button>
     </div>
   </form>
 </template>

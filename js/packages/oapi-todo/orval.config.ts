@@ -6,6 +6,7 @@ export default defineConfig({
     output: {
       target: './src/api.ts',
       schemas: './src/model',
+      // client: 'fetch',
       client: 'vue-query',
       baseUrl: '/api',
       prettier: true,
