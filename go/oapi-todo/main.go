@@ -34,7 +34,6 @@ func initDB() {
 		log.Fatal(err)
 	}
 	fmt.Println("Connected!")
-	defer db.Close()
 
 	_, err = db.Exec(`CREATE TABLE IF NOT EXISTS todo (
 			id      INT AUTO_INCREMENT NOT NULL,
