@@ -14,6 +14,7 @@ export * from './ui/radio-group';
 export * from './ui/scroll-area';
 export * from './ui/select';
 export * from './ui/textarea';
+export * from './ui/toast';
 export * from './ui/tooltip';
 
 export * from './combobox';
