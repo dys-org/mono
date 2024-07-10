@@ -19,3 +19,4 @@ export * from './ui/tooltip';
 
 export * from './combobox';
 export * from './dark-mode-toggle';
+export * from './spinner';
