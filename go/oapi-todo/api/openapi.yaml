@@ -29,7 +29,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Todo'
+                $ref: "#/components/schemas/Todo"
   /todos/{id}:
     get:
       summary: Get a todo by ID
@@ -83,7 +83,6 @@ components:
     Todo:
       type: object
       required:
-        - id
         - text
         - done
       properties:
