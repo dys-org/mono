@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { useQueryClient } from '@tanstack/vue-query';
+import { Spinner } from 'dys-ui';
 
 import { useDeleteTodosId, useGetTodos, usePutTodosId } from '@/api';
 import AddTodoVee from '@/components/AddTodoVee.vue';
 import TodoItem from '@/components/TodoItem.vue';
+import { TODOS_KEY } from '@/lib/constants';
 
 const queryClient = useQueryClient();
-const invalidateTodos = () => queryClient.invalidateQueries({ queryKey: ['todos'] });
+const invalidateTodos = () => queryClient.invalidateQueries({ queryKey: [TODOS_KEY] });
 
-const { isPending, error, data } = useGetTodos({ query: { queryKey: ['todos'] } });
+const { isPending, error, data } = useGetTodos({ query: { queryKey: [TODOS_KEY] } });
 
 // should we refetch the data here?
 const deleteTodo = useDeleteTodosId({
@@ -24,15 +26,17 @@ const updateTodo = usePutTodosId({
     <h1 class="mb-8 mt-4 text-4xl font-bold">Todos</h1>
     <AddTodoVee />
     <!-- Todo items -->
-    <span v-if="isPending">Loading...</span>
+    <div v-if="isPending" class="grid w-full place-items-center">
+      <Spinner />
+    </div>
     <span v-else-if="error">Error: {{ error.message }}</span>
     <div v-else class="mt-8 grid gap-4">
       <TodoItem
         v-for="todo in data?.data"
         :key="todo.id"
         :todo="todo"
-        @update-done="updateTodo.mutate({ id: todo.id, data: { ...todo, done: $event } })"
-        @save="updateTodo.mutate({ id: todo.id, data: { ...todo, text: $event } })"
+        @update-done="updateTodo.mutate({ id: todo.id!, data: { ...todo, done: $event } })"
+        @save="updateTodo.mutate({ id: todo.id!, data: { ...todo, text: $event } })"
         @delete="deleteTodo.mutate({ id: $event })"
       />
     </div>

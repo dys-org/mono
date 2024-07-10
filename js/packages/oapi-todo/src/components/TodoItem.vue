@@ -48,7 +48,10 @@ function handleDelete() {
       id="text"
       v-model="innerText"
       :readonly="!isEditing"
-      :class="{ 'line-through': props.todo.done }"
+      :class="[
+        'read-only:border-transparent focus:read-only:ring-0',
+        { 'line-through': props.todo.done },
+      ]"
     />
     <Label for="text" class="sr-only">Description</Label>
 
@@ -56,11 +59,13 @@ function handleDelete() {
       <Button v-if="isEditing" variant="outline" class="w-16" @click="handleSave"> Save </Button>
       <Button v-else variant="outline" class="w-16" @click="isEditing = true"> Edit </Button>
 
-      <Button v-if="isEditing" variant="link" class="w-20" @click="handleCancel"> Cancel </Button>
+      <Button v-if="isEditing" variant="link" class="-mr-2 w-16 px-2" @click="handleCancel">
+        Cancel
+      </Button>
       <Button
         v-else
         variant="link"
-        class="w-20 text-muted-foreground hover:text-destructive hover:no-underline"
+        class="-mr-2 w-16 px-2 text-muted-foreground hover:text-destructive hover:no-underline"
         @click="handleDelete"
       >
         Delete
