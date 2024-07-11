@@ -35,7 +35,7 @@ function handleDelete() {
 
 <template>
   <div
-    class="border-gray-7 flex items-center gap-3 rounded-lg border border-solid bg-white p-4 dark:bg-transparent"
+    class="flex items-center gap-3 rounded-lg bg-white p-4 shadow dark:border dark:border-solid dark:bg-transparent"
   >
     <Checkbox
       id="done"
@@ -56,19 +56,34 @@ function handleDelete() {
     <Label for="text" class="sr-only">Description</Label>
 
     <div class="ml-auto flex gap-1.5">
-      <Button v-if="isEditing" variant="outline" class="w-16" @click="handleSave"> Save </Button>
-      <Button v-else variant="outline" class="w-16" @click="isEditing = true"> Edit </Button>
+      <Button v-if="isEditing" variant="outline" size="icon" @click="handleSave">
+        <span class="sr-only">Save</span>
+        <span class="i-lucide-save size-4" aria-hidden="true" />
+      </Button>
+      <Button v-else variant="outline" size="icon" @click="isEditing = true">
+        <span class="sr-only">Edit</span>
+        <span class="i-lucide-edit size-4" aria-hidden="true" />
+      </Button>
 
-      <Button v-if="isEditing" variant="link" class="-mr-2 w-16 px-2" @click="handleCancel">
-        Cancel
+      <Button
+        v-if="isEditing"
+        variant="link"
+        size="icon"
+        class="-mr-2 text-muted-foreground hover:text-primary"
+        @click="handleCancel"
+      >
+        <span class="sr-only">Cancel</span>
+        <span class="i-lucide-x size-4" aria-hidden="true" />
       </Button>
       <Button
         v-else
         variant="link"
-        class="-mr-2 w-16 px-2 text-muted-foreground hover:text-destructive hover:no-underline"
+        size="icon"
+        class="-mr-2 text-muted-foreground hover:text-destructive"
         @click="handleDelete"
       >
-        Delete
+        <span class="sr-only">Delete</span>
+        <span class="i-lucide-trash size-4" aria-hidden="true" />
       </Button>
     </div>
   </div>

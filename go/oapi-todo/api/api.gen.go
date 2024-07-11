@@ -17,7 +17,7 @@ import (
 // Todo defines model for Todo.
 type Todo struct {
 	Done bool   `json:"done"`
-	Id   int    `json:"id"`
+	Id   *int   `json:"id,omitempty"`
 	Text string `json:"text"`
 }
 

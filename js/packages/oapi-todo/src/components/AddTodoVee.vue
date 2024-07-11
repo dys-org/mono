@@ -35,7 +35,14 @@ const onSubmit = handleSubmit((values, { resetForm }) => {
 <template>
   <form class="space-y-6" @submit="onSubmit">
     <div class="flex min-h-[68px] gap-1.5">
-      <FormField v-slot="{ componentField }" name="todo">
+      <FormField
+        v-slot="{ componentField }"
+        name="todo"
+        :validate-on-input="false"
+        :validate-on-change="false"
+        :validate-on-blur="false"
+        :validate-on-model-update="false"
+      >
         <FormItem class="w-full">
           <FormControl>
             <Input type="text" v-bind="componentField" aria-label="Todo Description" />
