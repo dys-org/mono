@@ -71,7 +71,8 @@ func (Server) PostTodos(ctx echo.Context) error {
 	if err != nil {
 		return fmt.Errorf("could not get last insert id: %w", err)
 	}
-	td.Id = int(id)
+	i := int(id)
+	td.Id = &i
 	return ctx.JSON(http.StatusCreated, td)
 }
 

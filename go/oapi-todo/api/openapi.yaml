@@ -82,9 +82,6 @@ components:
   schemas:
     Todo:
       type: object
-      required:
-        - text
-        - done
       properties:
         id:
           type: integer
@@ -93,3 +90,6 @@ components:
         done:
           type: boolean
           default: false
+      required:
+        - text
+        - done
