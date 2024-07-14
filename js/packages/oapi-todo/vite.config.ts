@@ -16,9 +16,9 @@ export default defineConfig({
     __VUE_PROD_DEVTOOLS__: true,
   },
   server: {
+    port: 5174,
     proxy: {
-      '/api': 'http://localhost:6969',
-      // '/auth': 'http://localhost:6969',
+      '/api': 'http://localhost:6970',
     },
   },
 });

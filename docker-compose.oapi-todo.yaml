@@ -1,0 +1,30 @@
+services:
+  server:
+    build:
+      context: ./go/oapi-todo
+      dockerfile: Dockerfile
+    ports:
+      - "6970:6970"
+    env_file:
+      - ./go/oapi-todo/.env
+    depends_on:
+      - db
+
+  client:
+    build:
+      context: ./js/
+      target: client
+      dockerfile: Dockerfile.oapi-todo
+    ports:
+      - "5174:80"
+    depends_on:
+      - server
+
+  db:
+    image: mysql:8.4
+    env_file:
+      - ./go/oapi-todo/.env
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db_data:/var/lib/mysql

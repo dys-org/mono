@@ -18,11 +18,11 @@ var db *sql.DB
 
 func initDB() {
 	cfg := mysql.Config{
-		User:   os.Getenv("DBUSER"),
-		Passwd: os.Getenv("DBPASS"),
+		User:   os.Getenv("DB_USER"),
+		Passwd: os.Getenv("MYSQL_ROOT_PASSWORD"),
 		Net:    "tcp",
-		Addr:   "127.0.0.1:3306",
-		DBName: "oapi_todo",
+		Addr:   os.Getenv("DB_ADDR"),
+		DBName: os.Getenv("MYSQL_DATABASE"),
 	}
 
 	var err error
@@ -68,5 +68,5 @@ func main() {
 	api.RegisterHandlersWithBaseURL(e, server, "/api")
 
 	// And we serve HTTP until the world ends.
-	e.Logger.Fatal(e.Start(":6969"))
+	e.Logger.Fatal(e.Start(":6970"))
 }

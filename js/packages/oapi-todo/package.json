@@ -15,7 +15,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@tanstack/vue-query": "^5.50.1",
+    "@tanstack/vue-query": "^5.51.1",
     "@vee-validate/zod": "^4.13.2",
     "axios": "^1.7.2",
     "dys-ui": "workspace:^",
@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@egoist/tailwindcss-icons": "^1.8.1",
-    "@iconify-json/lucide": "^1.1.198",
+    "@iconify-json/lucide": "^1.1.200",
     "@playwright/test": "^1.45.1",
     "@rushstack/eslint-patch": "^1.10.3",
     "@tsconfig/node20": "^20.1.4",
