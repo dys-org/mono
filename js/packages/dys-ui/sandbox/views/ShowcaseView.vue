@@ -229,6 +229,29 @@ const onSubmit = handleSubmit((values) => {
 
         <AlertDialog>
           <AlertDialogTrigger as-child>
+            <Button variant="outline"> Show Modal </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This action cannot be undone. This will permanently delete your account and remove
+                your data from our servers.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction>Continue</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      </div>
+
+      <div class="max-w-96">
+        <h2 class="mb-4 text-2xl font-semibold">Alert Dialog Non-Modal</h2>
+
+        <AlertDialog :modal="false">
+          <AlertDialogTrigger as-child>
             <Button variant="outline"> Show Dialog </Button>
           </AlertDialogTrigger>
           <AlertDialogContent>
