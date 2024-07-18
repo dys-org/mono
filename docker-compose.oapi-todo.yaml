@@ -27,4 +27,4 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./db_data:/var/lib/mysql
+      - ./go/oapi-todo/db_data:/var/lib/mysql
