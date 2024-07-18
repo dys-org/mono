@@ -1,6 +1,11 @@
 {
   "extends": "@tsconfig/node20/tsconfig.json",
-  "include": ["vite.config.*", "vitest.config.*", "package.json"],
+  "include": [
+    "packages/**/vite.config.*",
+    "packages/**/vitest.config.*",
+    "packages/**/package.json",
+    "packages/**/playwright.config.*"
+  ],
   "compilerOptions": {
     "composite": true,
     "noEmit": true,

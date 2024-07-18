@@ -19,7 +19,6 @@
     "build": "run-p build:types build-only",
     "build:types": "vue-tsc --project tsconfig.build.json --declaration --emitDeclarationOnly --outDir dist/types",
     "preview": "vite preview",
-    "test:unit": "vitest",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.build.json",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path ../../.gitignore",
@@ -36,7 +35,6 @@
   },
   "devDependencies": {
     "@egoist/tailwindcss-icons": "^1.8.1",
-    "@tsconfig/node20": "^20.1.4",
     "@vee-validate/zod": "^4.13.2",
     "@vitejs/plugin-vue": "^5.0.5",
     "@vue/tsconfig": "^0.5.1",
@@ -46,7 +44,6 @@
     "tailwindcss-animate": "^1.0.7",
     "vee-validate": "^4.13.2",
     "vite": "^5.3.3",
-    "vitest": "^1.6.0",
     "vue": "^3.4.31",
     "vue-router": "^4.4.0",
     "vue-tsc": "^2.0.26",
