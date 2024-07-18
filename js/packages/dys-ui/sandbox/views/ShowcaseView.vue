@@ -209,7 +209,7 @@ const onSubmit = handleSubmit((values) => {
       <!-- COMBOBOX -->
       <div class="max-w-96">
         <h2 class="mb-4 text-2xl font-semibold">Combobox</h2>
-        <Combobox v-model="selected" :options="frameworkOptions" width="w-96" />
+        <Combobox v-model="selected" :options="frameworkOptions" width="w-80" />
       </div>
 
       <div class="max-w-96">

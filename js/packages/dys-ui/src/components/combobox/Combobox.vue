@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { type HTMLAttributes, computed, ref } from 'vue';
 
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
   Command,
@@ -24,7 +25,7 @@ const props = withDefaults(
   {
     placeholder: 'Search...',
     triggerText: 'Select...',
-    width: 'w-80',
+    width: 'w-full',
   },
 );
 
@@ -34,6 +35,15 @@ const open = ref(false);
 const search = ref('');
 
 const isMultiple = computed(() => Array.isArray(model.value));
+
+function toggleAll() {
+  if (model.value.length === props.options.length) {
+    model.value = [];
+  } else {
+    const allValues = props.options.map((option) => option.value);
+    model.value = allValues;
+  }
+}
 </script>
 
 <template>
@@ -43,18 +53,24 @@ const isMultiple = computed(() => Array.isArray(model.value));
         variant="outline"
         role="combobox"
         :aria-expanded="open"
-        :class="['justify-between', props.width]"
+        :class="['h-auto min-h-10 justify-between hover:bg-transparent', props.width]"
       >
-        {{
-          isMultiple && model.length
-            ? props.options
-                .filter((opt) => model.includes(opt.value))
-                .map((opt) => opt.label)
-                .join(', ')
-            : typeof model === 'string' && model
+        <span v-if="isMultiple && model.length" class="flex flex-wrap gap-1.5">
+          <Badge
+            v-for="opt in props.options.filter((opt) => model.includes(opt.value))"
+            :key="opt.value"
+            variant="secondary"
+            >{{ opt.value }}</Badge
+          >
+        </span>
+
+        <template v-else>
+          {{
+            typeof model === 'string' && model
               ? props.options.find((opt) => opt.value === model)?.label
               : props.triggerText
-        }}
+          }}
+        </template>
 
         <span class="i-lucide-chevrons-up-down ml-2 size-4 shrink-0 opacity-50" />
       </Button>
@@ -62,21 +78,32 @@ const isMultiple = computed(() => Array.isArray(model.value));
     <PopoverContent :class="['p-0', props.width]">
       <Command :multiple="isMultiple">
         <CommandInput v-model="search" :placeholder="props.placeholder" />
-        <CommandEmpty>No framework found.</CommandEmpty>
+        <CommandEmpty>Nothing found.</CommandEmpty>
         <CommandList>
           <CommandGroup>
+            <CommandItem v-if="isMultiple" value="Select all" @select="toggleAll">
+              <span
+                :class="
+                  cn(
+                    'i-lucide-check mr-2 size-4',
+                    model.length === props.options.length ? 'opacity-100' : 'opacity-0',
+                  )
+                "
+              />
+              Select all
+            </CommandItem>
             <CommandItem
               v-for="opt in props.options"
               :key="opt.value"
               :value="opt.value"
               @select="
-                (e) => {
+                (e: any) => {
                   // this is used instead of v-model on Command
                   // to keep the search value from changing on select
                   if (Array.isArray(model)) {
                     // same check as isMultiple
                     model = model.includes(opt.value)
-                      ? model.filter((v) => v !== opt.value)
+                      ? model.filter((v: string) => v !== opt.value)
                       : [...model, opt.value];
                   } else {
                     if (typeof e.detail.value === 'string') {
