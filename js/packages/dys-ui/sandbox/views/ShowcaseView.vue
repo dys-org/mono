@@ -5,7 +5,6 @@ import { ref } from 'vue';
 import * as z from 'zod';
 
 import { Combobox } from '@/components/combobox';
-import { DarkModeToggle } from '@/components/dark-mode-toggle';
 // prettier-ignore
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
@@ -47,12 +46,6 @@ const onSubmit = handleSubmit((values) => {
   <main class="mb-96">
     <h1 class="mb-8 text-base font-semibold uppercase">Showcase</h1>
     <div class="grid gap-12">
-      <!-- DARK MODE TOGGLE -->
-      <div>
-        <h2 class="mb-4 text-2xl font-semibold">Dark Mode Toggle</h2>
-        <DarkModeToggle />
-      </div>
-
       <!-- BUTTON -->
       <div class="grid gap-y-4">
         <h2 class="mb-4 text-2xl font-semibold">Button</h2>
