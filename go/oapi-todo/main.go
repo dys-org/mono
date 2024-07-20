@@ -17,10 +17,10 @@ var db *sql.DB
 func initDB() {
 	db, err := sql.Open("sqlite", "./db_data/oapi-todo.db")
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("Failed to open database: %v", err)
 	}
 	if err = db.Ping(); err != nil {
-		log.Fatal(err)
+		log.Fatalf("Failed to ping database: %v", err)
 	}
 	fmt.Println("Connected!")
 
@@ -31,7 +31,7 @@ func initDB() {
 			done    INTEGER NOT NULL DEFAULT 0
 	)`)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("Failed to create table: %v", err)
 	}
 
 }
