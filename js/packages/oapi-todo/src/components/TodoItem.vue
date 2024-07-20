@@ -56,11 +56,11 @@ function handleDelete() {
     <Label for="text" class="sr-only">Description</Label>
 
     <div class="ml-auto flex gap-1.5">
-      <Button v-if="isEditing" variant="outline" size="icon" @click="handleSave">
+      <Button v-if="isEditing" variant="outline" size="icon" title="Save" @click="handleSave">
         <span class="sr-only">Save</span>
         <span class="i-lucide-save size-4" aria-hidden="true" />
       </Button>
-      <Button v-else variant="outline" size="icon" @click="isEditing = true">
+      <Button v-else variant="outline" size="icon" title="Edit" @click="isEditing = true">
         <span class="sr-only">Edit</span>
         <span class="i-lucide-edit size-4" aria-hidden="true" />
       </Button>
@@ -69,7 +69,8 @@ function handleDelete() {
         v-if="isEditing"
         variant="link"
         size="icon"
-        class="-mr-2 text-muted-foreground hover:text-primary"
+        class="text-muted-foreground hover:text-primary -mr-2"
+        title="Cancel"
         @click="handleCancel"
       >
         <span class="sr-only">Cancel</span>
@@ -79,7 +80,8 @@ function handleDelete() {
         v-else
         variant="link"
         size="icon"
-        class="-mr-2 text-muted-foreground hover:text-destructive"
+        class="text-muted-foreground hover:text-destructive -mr-2"
+        title="Delete"
         @click="handleDelete"
       >
         <span class="sr-only">Delete</span>
