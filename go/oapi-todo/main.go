@@ -4,29 +4,18 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
-	"os"
 
-	"github.com/go-sql-driver/mysql"
-	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 
 	"github.com/dys-org/oapi-todo/api"
+	_ "modernc.org/sqlite"
 )
 
 var db *sql.DB
 
 func initDB() {
-	cfg := mysql.Config{
-		User:   os.Getenv("DB_USER"),
-		Passwd: os.Getenv("MYSQL_ROOT_PASSWORD"),
-		Net:    "tcp",
-		Addr:   os.Getenv("DB_ADDR"),
-		DBName: os.Getenv("MYSQL_DATABASE"),
-	}
-
-	var err error
-	db, err = sql.Open("mysql", cfg.FormatDSN())
+	db, err := sql.Open("sqlite", "./db_data/oapi-todo.db")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -35,11 +24,11 @@ func initDB() {
 	}
 	fmt.Println("Connected!")
 
-	_, err = db.Exec(`CREATE TABLE IF NOT EXISTS todo (
-			id      INT AUTO_INCREMENT NOT NULL,
-			text    VARCHAR(255) NOT NULL,
-			done    BOOLEAN NOT NULL DEFAULT false,
-			PRIMARY KEY (id)
+	_, err = db.Exec(`
+		CREATE TABLE IF NOT EXISTS todo (
+			id      INTEGER PRIMARY KEY AUTOINCREMENT,
+			text    TEXT NOT NULL,
+			done    INTEGER NOT NULL DEFAULT 0
 	)`)
 	if err != nil {
 		log.Fatal(err)
@@ -48,11 +37,6 @@ func initDB() {
 }
 
 func main() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal(err)
-	}
-
 	initDB()
 
 	// Pass the db instance to the api package
