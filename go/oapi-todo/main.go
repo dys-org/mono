@@ -15,7 +15,8 @@ import (
 var db *sql.DB
 
 func initDB() {
-	db, err := sql.Open("sqlite", "./db_data/oapi-todo.db")
+	var err error
+	db, err = sql.Open("sqlite", "./db_data/oapi-todo.db")
 	if err != nil {
 		log.Fatalf("Failed to open database: %v", err)
 	}
