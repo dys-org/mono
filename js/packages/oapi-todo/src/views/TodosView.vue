@@ -14,10 +14,12 @@ const { isPending, error, data } = useGetTodos({ query: { queryKey: [TODOS_KEY] 
 
 // should we refetch the data here?
 const deleteTodo = useDeleteTodosId({
-  mutation: { onSuccess: invalidateTodos },
+  // mutation: { onSuccess: invalidateTodos },
+  mutation: { onSuccess: () => console.log('onSuccess'), onError: (err) => console.log(err) },
 });
 const updateTodo = usePutTodosId({
-  mutation: { onSuccess: invalidateTodos },
+  // mutation: { onSuccess: invalidateTodos },
+  mutation: { onSuccess: () => console.log('onSuccess'), onError: (err) => console.log(err) },
 });
 </script>
 
