@@ -89,6 +89,7 @@ export default {
     animate,
     iconsPlugin({
       collections: getIconCollections(['radix-icons', 'lucide']),
+      extraProperties: { display: 'block', verticalAlign: 'middle' },
     }),
   ],
 };
