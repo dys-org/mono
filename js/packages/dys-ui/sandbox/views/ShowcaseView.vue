@@ -8,11 +8,15 @@ import { Combobox } from '@/components/combobox';
 // prettier-ignore
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
+// prettier-ignore
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 // prettier-ignore
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 // prettier-ignore
 import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 // prettier-ignore
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
 
@@ -25,6 +29,7 @@ const frameworkOptions = [
 ];
 
 const selected = ref('');
+const isModal = ref(true);
 const selectedMultiple = ref([]);
 
 const formSchema = toTypedSchema(
@@ -83,15 +88,15 @@ const onSubmit = handleSubmit((values) => {
         <h3 class="-mb-1 mt-2 font-semibold">icon</h3>
         <div class="flex gap-4">
           <Button size="icon"><span class="i-lucide-alarm-clock size-5" /></Button>
-          <Button size="icon" variant="destructive"
-            ><span class="i-lucide-alarm-clock size-5"
-          /></Button>
-          <Button size="icon" variant="outline"
-            ><span class="i-lucide-alarm-clock size-5"
-          /></Button>
-          <Button size="icon" variant="secondary"
-            ><span class="i-lucide-alarm-clock size-5"
-          /></Button>
+          <Button size="icon" variant="destructive">
+            <span class="i-lucide-alarm-clock size-5" />
+          </Button>
+          <Button size="icon" variant="outline">
+            <span class="i-lucide-alarm-clock size-5" />
+          </Button>
+          <Button size="icon" variant="secondary">
+            <span class="i-lucide-alarm-clock size-5" />
+          </Button>
           <Button size="icon" variant="ghost"><span class="i-lucide-alarm-clock size-5" /></Button>
           <Button size="icon" variant="link"><span class="i-lucide-alarm-clock size-5" /></Button>
         </div>
@@ -222,7 +227,7 @@ const onSubmit = handleSubmit((values) => {
 
         <AlertDialog>
           <AlertDialogTrigger as-child>
-            <Button variant="outline"> Show Modal </Button>
+            <Button variant="outline"> Show Alert Dialog </Button>
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
@@ -241,26 +246,41 @@ const onSubmit = handleSubmit((values) => {
       </div>
 
       <div class="max-w-96">
-        <h2 class="mb-4 text-2xl font-semibold">Alert Dialog Non-Modal</h2>
+        <h2 class="mb-4 text-2xl font-semibold">Dialog</h2>
 
-        <AlertDialog :modal="false">
-          <AlertDialogTrigger as-child>
-            <Button variant="outline"> Show Dialog </Button>
-          </AlertDialogTrigger>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-              <AlertDialogDescription>
-                This action cannot be undone. This will permanently delete your account and remove
-                your data from our servers.
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction>Continue</AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+        <Dialog :modal="isModal">
+          <div class="flex items-center gap-4">
+            <DialogTrigger as-child>
+              <Button variant="outline"> Show Dialog </Button>
+            </DialogTrigger>
+            <!-- <div class="flex items-center space-x-2">
+              <input
+                id="isModal"
+                v-model="isModal"
+                type="checkbox"
+                class="ring-offset-background focus-visible:ring-ring text-primary hover:text-primary size-4 shrink-0 rounded-md accent-current focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              />
+              <Label for="isModal"> Modal </Label>
+            </div> -->
+            <div class="flex items-center space-x-2">
+              <Checkbox id="terms" :checked="isModal" @update:checked="isModal = !isModal" />
+              <Label for="terms"> Modal </Label>
+            </div>
+          </div>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Edit profile</DialogTitle>
+              <DialogDescription>
+                Make changes to your profile here. Click save when you're done.
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter class="sm:justify-start">
+              <DialogClose as-child>
+                <Button type="button" variant="secondary"> Close </Button>
+              </DialogClose>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
 
       <div class="max-w-96">
