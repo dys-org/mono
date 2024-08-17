@@ -290,7 +290,7 @@ const onSubmit = handleSubmit((values) => {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input type="text" placeholder="dys" v-bind="componentField" />
+                <Input type="text" placeholder="dys" v-bind="componentField" data-1p-ignore />
               </FormControl>
               <FormDescription> This is your public display name. </FormDescription>
               <FormMessage />
