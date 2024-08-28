@@ -7,7 +7,7 @@ export default {
   safelist: ['dark'],
   prefix: '',
 
-  content: ['./index.html', './src/**/*.{vue,js,ts}', './node_modules/dys-ui/**/*.{vue,js,ts}'],
+  content: ['./index.html', './src/**/*.{vue,js,ts}', './node_modules/dys-ui/dist/dys-ui.js'],
 
   theme: {
     container: {
