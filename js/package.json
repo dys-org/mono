@@ -5,15 +5,15 @@
   "packageManager": "pnpm@9.5.0",
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.10.4",
-    "@total-typescript/ts-reset": "^0.6.0",
+    "@total-typescript/ts-reset": "^0.6.1",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@tsconfig/node20": "^20.1.4",
-    "@types/node": "^20.14.11",
+    "@types/node": "^20.16.5",
     "@vue/eslint-config-prettier": "^9.0.0",
     "@vue/eslint-config-typescript": "^13.0.0",
     "eslint": "^8.57.0",
     "eslint-plugin-playwright": "^1.6.2",
-    "eslint-plugin-vue": "^9.27.0",
+    "eslint-plugin-vue": "^9.28.0",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.6",
     "typescript": "~5.5.4"
