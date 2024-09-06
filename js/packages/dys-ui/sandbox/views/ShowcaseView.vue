@@ -109,7 +109,7 @@ const onSubmit = handleSubmit((values) => {
           <DropdownMenuTrigger as-child>
             <Button variant="outline"> Open </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent class="w-56">
+          <DropdownMenuContent class="w-56" align="start">
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
