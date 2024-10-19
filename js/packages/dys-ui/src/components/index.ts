@@ -18,6 +18,4 @@ export * from './ui/textarea';
 export * from './ui/toast';
 export * from './ui/tooltip';
 
-export * from './combobox';
-export * from './dark-mode-toggle';
-export * from './spinner';
+export { default as Spinner } from './Spinner.vue';

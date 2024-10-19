@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { DarkModeToggle } from 'dys-ui';
 import { RouterLink, RouterView } from 'vue-router';
+
+import DarkModeToggle from '@/components/DarkModeToggle.vue';
 </script>
 
 <template>
